@@ -265,6 +265,11 @@ void bhv_mario_update(void) {
     if ((stateIndex == 0) || (!is_player_active(gMarioState))) {
         gMarioState->particleFlags = 0;
     }
+  
+	  if (gCurrentObject->coopFlags & (1 << 5)) {
+		    gMarioState->visibleToEnemies = TRUE;
+		    gCurrentObject->coopFlags &= ~(1 << 5);
+    }
 
     smlua_call_event_hooks(HOOK_BEFORE_MARIO_UPDATE, gMarioState);
 

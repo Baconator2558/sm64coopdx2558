@@ -385,6 +385,17 @@ bool get_mario_anim_part_rot(struct MarioState *m, u32 animPart, VEC_OUT Vec3s r
 
 ///
 
+void override_mario_visibility_to_objects(struct MarioState *m) {
+    if (!m) { return; }
+
+	if (m->visibleToEnemies) {
+		m->marioObj->coopFlags |= 1 << 5;
+		m->visibleToEnemies = FALSE;
+	}
+}
+
+///
+
 s16 get_current_save_file_num(void) {
     extern s16 gCurrSaveFileNum;
     return gCurrSaveFileNum;
